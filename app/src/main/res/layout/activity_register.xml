@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/backgroundColor"
+
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    tools:context=".MainActivity">
+    tools:context=".register">
+
 
     <EditText
         android:id="@+id/passwordInput"
@@ -57,7 +60,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:fontFamily="Arial"
-        android:text="Username:"
+        android:text="FullName:"
         android:textColor="@color/fontColor"
         android:textSize="9.5pt"
         app:layout_constraintEnd_toStartOf="@+id/userNameInput"
@@ -75,7 +78,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:fontFamily="Arial"
-        android:text="Welcome To Time Cost Calculator"
+        android:text="Register"
         android:gravity="center"
         android:textColor="@color/fontColor"
         android:textSize="11pt"
@@ -147,7 +150,7 @@
         android:background="@color/barColor"
         android:filterTouchesWhenObscured="false"
         android:fontFamily="Arial"
-        android:text="Log In"
+        android:text="Register"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="10pt"
@@ -157,4 +160,5 @@
         app:layout_constraintStart_toEndOf="@+id/mainPig"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.459" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

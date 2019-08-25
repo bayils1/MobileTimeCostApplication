@@ -3,35 +3,191 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/backgroundColor"
-
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".register">
 
+    <TextView
+        android:id="@+id/StudentLoan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="Arial"
+        android:text="StudentLoan:"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/annualIncomeLabel" />
+
+    <EditText
+        android:id="@+id/WeeklyExpensesInput"
+        android:layout_width="173dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/input_text_design"
+        android:fontFamily="Arial"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
+        android:shadowRadius="@android:integer/config_shortAnimTime"
+        android:textSize="9pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentLoanInput" />
+
+    <TextView
+        android:id="@+id/WeeklyExpensesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:fontFamily="Arial"
+        android:text="Weekly Expenses:"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:layout_constraintEnd_toStartOf="@+id/WeeklyExpensesInput"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StudentLoan" />
+
+    <EditText
+        android:id="@+id/annualIncomeInput"
+        android:layout_width="203dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/input_text_design"
+        android:digits="0123456789."
+        android:fontFamily="Arial"
+        android:inputType="numberDecimal"
+        android:shadowRadius="@android:integer/config_shortAnimTime"
+        android:textSize="9pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
+
+    <TextView
+        android:id="@+id/annualIncomeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Annual Income:"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:layout_constraintEnd_toStartOf="@+id/annualIncomeInput"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
+
+    <TextView
+        android:id="@+id/passwordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="Arial"
+        android:text="Password:"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameLabel" />
 
     <EditText
         android:id="@+id/passwordInput"
-        android:layout_width="220dp"
-        android:inputType="textPassword"
-        android:layout_height="45dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="246dp"
+        android:layout_height="35dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/input_text_design"
         android:fontFamily="Arial"
-        android:textColor="@color/fontColor"
-        android:textSize="10pt"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:shadowRadius="@android:integer/config_shortAnimTime"
+        android:textSize="9pt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/passwordLabel"
+        app:layout_constraintTop_toBottomOf="@+id/userNameInput" />
+
+    <EditText
+        android:id="@+id/userNameInput"
+        android:layout_width="244dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/input_text_design"
+        android:fontFamily="Arial"
+        android:shadowRadius="@android:integer/config_shortAnimTime"
+        android:textSize="9pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/userNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/fullNameInput" />
+
+    <TextView
+        android:id="@+id/userNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="Arial"
+        android:text="Username:"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullNameLabel" />
+
+    <TextView
+        android:id="@+id/fullNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="52dp"
+        android:text="FullName:"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:fontFamily="Arial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mottoText" />
+
+    <EditText
+        android:id="@+id/fullNameInput"
+        android:layout_width="251dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/input_text_design"
+        android:fontFamily="Arial"
+        android:shadowRadius="@android:integer/config_shortAnimTime"
+        android:textSize="9pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fullNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <View
         android:id="@+id/myRectangleView"
         android:layout_width="413dp"
-        android:layout_height="84dp"
+        android:layout_height="70dp"
         android:background="@color/barColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,24 +205,36 @@
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/userNameLabel"
+        android:id="@+id/mottoText"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:fontFamily="Arial"
-        android:text="FullName:"
+        android:text="Reach your savings goals today!"
         android:textColor="@color/fontColor"
-        android:textSize="9.5pt"
-        app:layout_constraintEnd_toStartOf="@+id/userNameInput"
-        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mottoText" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <Button
+        android:id="@+id/Register"
+        android:stateListAnimator="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/barColor"
+        android:filterTouchesWhenObscured="false"
+        android:fontFamily="Arial"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintStart_toEndOf="@+id/mainPig"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459" />
 
     <TextView
         android:id="@+id/welcomeLabel"
@@ -88,37 +256,6 @@
         app:layout_constraintTop_toBottomOf="@+id/myRectangleView" />
 
 
-    <EditText
-        android:id="@+id/userNameInput"
-        android:layout_width="220dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/input_text_design"
-        android:fontFamily="Arial"
-        android:shadowRadius="@android:integer/config_shortAnimTime"
-        android:textSize="10pt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-    <TextView
-        android:id="@+id/passwordLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:fontFamily="Arial"
-        android:text="Password:"
-        android:textColor="@color/fontColor"
-        android:textSize="9.5pt"
-        app:layout_constraintEnd_toStartOf="@+id/passwordInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameLabel" />
-
     <View
         android:id="@+id/view2"
         android:layout_width="320dp"
@@ -130,35 +267,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeLabel" />
 
-    <TextView
-        android:id="@+id/mottoText"
-        android:gravity="center"
+    <CheckBox
+        android:id="@+id/studentLoanInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="Arial"
-        android:text="Reach your savings goals today!"
-        android:textColor="@color/fontColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-    <Button
-        android:id="@+id/logIn"
-        android:stateListAnimator="@null"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/barColor"
-        android:filterTouchesWhenObscured="false"
-        android:fontFamily="Arial"
-        android:text="Register"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="10pt"
-        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
-        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
-        app:layout_constraintHorizontal_bias="0.747"
-        app:layout_constraintStart_toEndOf="@+id/mainPig"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@+id/StudentLoan"
+        app:layout_constraintTop_toBottomOf="@+id/annualIncomeInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

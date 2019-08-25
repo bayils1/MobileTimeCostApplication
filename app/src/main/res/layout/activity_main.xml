@@ -28,7 +28,7 @@
     <View
         android:id="@+id/myRectangleView"
         android:layout_width="413dp"
-        android:layout_height="84dp"
+        android:layout_height="70dp"
         android:background="@color/barColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

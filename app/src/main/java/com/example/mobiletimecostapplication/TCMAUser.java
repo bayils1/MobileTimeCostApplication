@@ -14,6 +14,7 @@ class TCMAUser {
     private List<Goal> userGoalList;
     private String userName;
     private String password;
+    private double weeklyIncome;
 
 
     //Region GettersSetters
@@ -60,11 +61,5 @@ class TCMAUser {
         this.userName = userName;
     }
     //EndRegion
-
-    public boolean validatePassword()
-    {
-
-        return false;
-    }
 
 }

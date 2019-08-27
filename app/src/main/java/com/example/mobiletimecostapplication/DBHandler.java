@@ -22,6 +22,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "TCMA";
     private static final int DATABASE_VERSION = 1;
+    private String columnValue[]= {"TCMAUserID","fullName","userName","password","goalWeeklyTotal","annualIncome"};
 
     private static final String CreateDatabaseSQL = "create table "+ TABLE_TMCAUser +
             "(" + COLUMN_TCMAUserID+" integer primary key autoincrement, " +
@@ -45,29 +46,54 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_TMCAUser);
-
         onCreate(db);
     }
 
     public void addDummyUser(){
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_Username, "test2");
-        values.put(COLUMN_Password, "test3");
+        values.put(COLUMN_Username, "test");
+        values.put(COLUMN_Password, "test");
         db.insert(TABLE_TMCAUser, null, values);
         db.close();
     }
 
-    public int getUser(String username, String password){
-        int count = 0;
+    public boolean validUser(String username, String password){
+
+        int valid = 0;
         SQLiteDatabase db = this.getReadableDatabase();
         SQLiteStatement state = db.compileStatement("select count(*) from " + TABLE_TMCAUser +
-                " where username='" + username + "' And " + COLUMN_Password + "='" +  password + "'");
-        count = Integer.parseInt(state.simpleQueryForString());
+                " where " + COLUMN_Username + "='" + username + "' And " +
+                COLUMN_Password + "='" +  password + "'");
+        valid = Integer.parseInt(state.simpleQueryForString());
+        state.close();
         db.close();
-        return count;
+        return valid == 1;
     }
 
+    public TCMAUser getUserObj(String username, String password){
+        TCMAUser tempUser = new TCMAUser();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from " + TABLE_TMCAUser +
+                " where " + COLUMN_Username + "='" + username + "' And " + COLUMN_Password + "='" +  password + "'";
+
+        //null is all columns
+        Cursor c = db.rawQuery(query, null);
+
+        while(c.moveToNext()) {
+            for(int i = 0; i < columnValue.length; i++)
+            {
+                if(c.getString(i) != null)
+                    tempUser.setTCMAUser(c.getString(i),columnValue[i]);
+            }
+
+        }
+
+
+        db.close();
+        return tempUser;
+    }
 
 
 

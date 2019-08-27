@@ -1,6 +1,7 @@
 package com.example.mobiletimecostapplication;
 
 import android.graphics.Region;
+import android.util.Log;
 
 
 import java.util.List;
@@ -13,6 +14,8 @@ class TCMAUser {
     private boolean studentLoanFlag;
     private List<Goal> userGoalList;
     private String userName;
+
+
     private String password;
     private double weeklyIncome;
 
@@ -60,6 +63,46 @@ class TCMAUser {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     //EndRegion
+
+    public void setTCMAUser(String value, String definition)
+    {
+        Log.d("Value", "String is " + value);
+        switch(definition)
+        {
+            case "TCMAUserID":
+                this.TCMAUserID = Integer.parseInt(value);
+                break;
+            case "fullName":
+                this.fullName = value;
+                break;
+            case "goalWeeklyTotal":
+                try {
+                    this.goalWeeklyTotal = Double.parseDouble(value);
+                }
+                catch(Exception doublefail){
+                    Log.d("Failed", "Double could not parse.");}
+                break;
+            case "annualIncome":
+                try {
+                    this.annualIncome = Double.parseDouble(value);
+                }
+                catch(Exception doublefail){
+                    Log.d("Failed", "Double could not parse.");}
+               break;
+            case "userName":
+                this.userName = value;
+                break;
+            case "password":
+                this.password = value;
+                break;
+
+        }
+    }
+
 
 }

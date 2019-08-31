@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-import android.os.Build;
-import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 public class DBHandler extends SQLiteOpenHelper {
     public static final String TABLE_TCMAUser= "TMCAUser";
@@ -21,9 +17,15 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_annualIncome = "annualTotal";
     private static final String COLUMN_ExpensesCost = "expensesCost";
 
+    public static final String TABLE_Goal= "TMCAUser";
+    public static final String COLUMN_GoalName = "goalName";
+    public static final String COLUMN_GoalCost="GoalCost";
+    public static final String COLUMN_GoalID = "goalID";
+
+
     private static final String DATABASE_NAME = "TCMA";
     private static final int DATABASE_VERSION = 1;
-    private String columnValue[]= {"TCMAUserID","fullName","userName","password","goalWeeklyTotal","annualIncome"};
+    private String columnTCMAUserValues[]= {"TCMAUserID","fullName","userName","password","goalWeeklyTotal","annualIncome"};
 
     private static final String CreateDatabaseSQL = "create table "+ TABLE_TCMAUser +
             "(" + COLUMN_TCMAUserID+" integer primary key autoincrement, " +
@@ -34,7 +36,12 @@ public class DBHandler extends SQLiteOpenHelper {
             COLUMN_annualIncome + "numeric, " +
             COLUMN_ExpensesCost + "numeric, " +
             "Constraint username_unique UNIQUE (" + COLUMN_Username + ")" +
-            ");";
+            ");" +
+            "create table " + TABLE_Goal + "(" +
+            COLUMN_GoalID +"integer primary key autoincrement," +
+            COLUMN_GoalName+" text, " +
+            COLUMN_TCMAUserID+" int not null," +
+            COLUMN_GoalCost+" numeric not null);";
 
     public DBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -75,6 +82,24 @@ public class DBHandler extends SQLiteOpenHelper {
         return valid == 1;
     }
 
+    public int getUserID(String username)
+    {
+        int id = -1;
+        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteStatement state = db.compileStatement("select "+ COLUMN_TCMAUserID  + " from " + TABLE_TCMAUser +
+                " where " + COLUMN_Username + "='" + username + "'");
+        try {
+            id = Integer.parseInt(state.simpleQueryForString());
+        }
+        catch(Exception invalidID) {
+
+        }
+        state.close();
+        db.close();
+        return id;
+    }
+
+
     public TCMAUser getUserObj(String username, String password){
         TCMAUser tempUser = new TCMAUser();
 
@@ -86,18 +111,36 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(query, null);
 
         while(c.moveToNext()) {
-            for(int i = 0; i < columnValue.length; i++)
+            for(int i = 0; i < columnTCMAUserValues.length; i++)
             {
                 if(c.getString(i) != null)
-                    tempUser.setTCMAUser(c.getString(i),columnValue[i]);
+                    tempUser.setTCMAUser(c.getString(i), columnTCMAUserValues[i]);
             }
-
         }
-
-
         db.close();
         return tempUser;
     }
+
+    public boolean addTCMAUser(TCMAUser newUser){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_FullName, newUser.getFullName());
+            values.put(COLUMN_Username, newUser.getUserName());
+            values.put(COLUMN_Password, newUser.getPassword());
+            values.put(COLUMN_goalWeeklyTotal, newUser.getGoalWeeklyTotal());
+            values.put(COLUMN_annualIncome, newUser.getAnnualIncome());
+            values.put(COLUMN_ExpensesCost, newUser.getWeeklyExpenses());
+            db.insert(TABLE_TCMAUser, null, values);
+            db.close();
+            return true;
+        }
+        catch(Exception userAddingFailed)
+        {
+            return false;
+        }
+    }
+
 
 
 

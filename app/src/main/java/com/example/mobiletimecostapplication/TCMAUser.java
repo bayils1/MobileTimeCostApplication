@@ -14,9 +14,11 @@ class TCMAUser {
     private boolean studentLoanFlag;
     private List<Goal> userGoalList;
     private String userName;
-
-
     private String password;
+
+
+
+    private double weeklyExpenses;
     private double weeklyIncome;
 
 
@@ -38,6 +40,13 @@ class TCMAUser {
     }
     public void setGoalWeeklyTotal(double goalWeeklyTotal) {
         this.goalWeeklyTotal = goalWeeklyTotal;
+    }
+    public double getWeeklyExpenses() {
+        return weeklyExpenses;
+    }
+
+    public void setWeeklyExpenses(double weeklyExpenses) {
+        this.weeklyExpenses = weeklyExpenses;
     }
     public double getAnnualIncome() {
         return annualIncome;

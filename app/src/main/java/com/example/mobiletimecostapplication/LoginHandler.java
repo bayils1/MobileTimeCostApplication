@@ -12,13 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import java.io.Console;
-import java.security.PublicKey;
-
-import javax.sql.DataSource;
-
-public class MainActivity extends AppCompatActivity {
+public class LoginHandler extends AppCompatActivity {
 
     Button logIn;
     EditText username;
@@ -33,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         db = new DBHandler(this);
+        if (!db.validUser("test"))
+            db.addDummyUser();
         imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
 
         logIn = (Button)findViewById(R.id.logIn);
@@ -44,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
                         username = findViewById(R.id.userNameInput);
                         password = findViewById(R.id.passwordInput);
 
-                        if(db.validUser(username.getText().toString(), password.getText().toString()))
+                        if(db.validUser(username.getText().toString()))
                         {
                             user = db.getUserObj(username.getText().toString(), password.getText().toString());
-                            Log.println(Log.DEBUG, "Login", "Successful");
-                            Toast.makeText(MainActivity.this, "Hello " + user.getUserName() + "!", Toast.LENGTH_LONG).show();
+                            Log.println(Log.DEBUG, "LoginHandler", "Successful");
+                            Toast.makeText(LoginHandler.this, "Hello " + user.getUserName() + "!", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
-                            Intent intent = new Intent(MainActivity.this, register.class);
+                            Intent intent = new Intent(LoginHandler.this, RegisterHandler.class);
                             startActivity(intent);
                             Log.println(Log.DEBUG,"Input", username.getText().toString());
                         }

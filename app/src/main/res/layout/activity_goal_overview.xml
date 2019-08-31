@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".RegisterHandler">
+
+    <TextView
+        android:id="@+id/fullNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="+"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:fontFamily="Arial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mottoText" />
+
+    <EditText
+        android:id="@+id/fullNameInput"
+        android:layout_width="341dp"
+        android:layout_height="33dp"
+        android:background="@drawable/input_text_design"
+        android:fontFamily="Arial"
+        android:shadowRadius="@android:integer/config_shortAnimTime"
+        android:textSize="9pt"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="193dp" />
+
+    <View
+        android:id="@+id/myRectangleView"
+        android:layout_width="413dp"
+        android:layout_height="70dp"
+        android:background="@color/barColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/NewGoal"
+        android:layout_width="123dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/barColor"
+        android:filterTouchesWhenObscured="false"
+        android:fontFamily="Arial"
+        android:stateListAnimator="@null"
+        android:text="+ New Goal"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="10pt"
+        app:layout_constraintEnd_toStartOf="@+id/mainPig"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="17dp" />
+
+    <ImageView
+        android:id="@+id/mainPig"
+        android:layout_width="48dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:src="@drawable/pig"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mottoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="Arial"
+        android:gravity="center"
+        android:text="Days till completion"
+        android:textColor="@color/fontColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/welcomeLabel"
+        android:layout_width="395dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:fontFamily="Arial"
+        android:gravity="center"
+        android:text="Goal Overview"
+        android:textColor="@color/fontColor"
+        android:textSize="11pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myRectangleView" />
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="320dp"
+        android:layout_height="2dip"
+        android:background="@color/fontColor"
+        android:paddingBottom="10dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

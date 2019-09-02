@@ -35,7 +35,6 @@ public class RegisterHandler extends AppCompatActivity {
     {
         for (EditText element : fields) {
             String temp = element.getText().toString();
-            Log.println(Log.DEBUG, "User", element.getText().toString());
             if (temp.isEmpty())
                 return false;
         }
@@ -67,7 +66,7 @@ public class RegisterHandler extends AppCompatActivity {
                         else {
                             if (db.validUser(username.getText().toString())) {
                                 Toast.makeText(RegisterHandler.this, "Error: username already exists!", Toast.LENGTH_LONG).show();
-                            } else {
+                            } else if (!db.validUser(username.getText().toString())){
                                 user = new TCMAUser();
                                 user.setFullName(fullName.getText().toString());
                                 user.setWeeklyExpenses(Double.parseDouble((expensesCost.getText().toString())));
@@ -76,7 +75,17 @@ public class RegisterHandler extends AppCompatActivity {
                                 user.setPassword(password.getText().toString());
                                 user.setStudentLoanFlag(studentLoan.isChecked());
                                 user.calculateAnnualIncome();
-                                Log.println(Log.DEBUG, "User", user.getFullName() + " " + user.getAnnualIncome() +" " + user.getWeeklyIncome() + "  " + user.getWeeklyIncomeAfterTax());
+
+                                if(db.addTCMAUser(user))
+                                {
+                                    Toast.makeText(RegisterHandler.this, "Register Successful", Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    Toast.makeText(RegisterHandler.this, "Register Unsuccessful", Toast.LENGTH_LONG).show();
+                                }
+
+                                System.out.println(user.getWeeklyIncomeAfterTax() + user.getTCMAUserID() + user.getFullName());
                             }
                         }
 

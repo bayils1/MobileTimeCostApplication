@@ -27,8 +27,10 @@ public class LoginHandler extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         db = new DBHandler(this);
-        if (!db.validUser("test"))
+
+        //if (!db.validUser("test"))
             db.addDummyUser();
+
         imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
 
         logIn = (Button)findViewById(R.id.logIn);
@@ -36,15 +38,19 @@ public class LoginHandler extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                         username = findViewById(R.id.userNameInput);
                         password = findViewById(R.id.passwordInput);
+                        Log.println(Log.DEBUG, "LoginHandler", "Successful");
 
                         if(db.validUser(username.getText().toString()))
                         {
+                            Log.println(Log.DEBUG, "reads user", "Successful");
                             user = db.getUserObj(username.getText().toString(), password.getText().toString());
-                            Log.println(Log.DEBUG, "LoginHandler", "Successful");
-                            Toast.makeText(LoginHandler.this, "Hello " + user.getUserName() + "!", Toast.LENGTH_LONG).show();
+
+                            Toast.makeText(LoginHandler.this, "Hello " + user.getFullName() + "!", Toast.LENGTH_LONG).show();
                         }
                         else
                         {

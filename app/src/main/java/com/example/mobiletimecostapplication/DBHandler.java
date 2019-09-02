@@ -6,15 +6,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 public class DBHandler extends SQLiteOpenHelper {
-    public static final String TABLE_TCMAUser= "TMCAUser";
+    public static final String TABLE_TCMAUser= "TCMAUser";
     public static final String COLUMN_TCMAUserID = "TCMAUserID";
     public static final String COLUMN_FullName = "fullName";
     public static final String COLUMN_Username ="username";
     public static final String COLUMN_Password = "password";
     private static final String COLUMN_goalWeeklyTotal = "goalWeeklyTotal";
-    private static final String COLUMN_annualIncome = "annualTotal";
+    private static final String COLUMN_annualIncome = "annualIncome";
     private static final String COLUMN_ExpensesCost = "expensesCost";
     public static final String TABLE_Goal= "Goal";
     public static final String COLUMN_GoalName = "goalName";
@@ -32,12 +33,12 @@ public class DBHandler extends SQLiteOpenHelper {
             COLUMN_Username+" text not null unique," +
             COLUMN_Password+" text not null," +
             COLUMN_goalWeeklyTotal + " numeric," +
-            COLUMN_annualIncome + "numeric, " +
-            COLUMN_ExpensesCost + "numeric, " +
+            COLUMN_annualIncome + " numeric, " +
+            COLUMN_ExpensesCost + " numeric, " +
             "Constraint username_unique UNIQUE (" + COLUMN_Username + ")" +
             "); ";
     private static final String CreateGoalTable = "create table " + TABLE_Goal + "(" +
-            COLUMN_GoalID +"integer primary key autoincrement," +
+            COLUMN_GoalID +" integer primary key autoincrement," +
             COLUMN_GoalName+" text, " +
             COLUMN_TCMAUserID+" int not null," +
             COLUMN_GoalCost+" numeric not null);";
@@ -63,6 +64,12 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues values = new ContentValues();
 
+        /*
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_TCMAUser);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_Goal);
+        onCreate(db);
+
+         */
         values.put(COLUMN_FullName, "Test User");
         values.put(COLUMN_Username, "test");
         values.put(COLUMN_Password, "test");
@@ -80,6 +87,7 @@ public class DBHandler extends SQLiteOpenHelper {
         valid = Integer.parseInt(state.simpleQueryForString());
         state.close();
         db.close();
+        Log.println(Log.DEBUG, "Valid Count", valid + "");
         return valid == 1;
     }
 

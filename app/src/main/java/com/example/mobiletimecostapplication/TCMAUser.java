@@ -157,14 +157,13 @@ class TCMAUser {
         {
             double tempIncome = annualIncome;
             int i = 0;
-            while (tempIncome > 0)
+            for(int j = 2; j > 0 ;j--)
             {
-                taxOnIncome = annualIncome * taxRates[i];
-                System.out.println(taxOnIncome);
-
-                tempIncome -= taxIncrements[i];
+                taxOnIncome += annualIncome * taxRates[i];
+                tempIncome -= taxIncrements[j];
                 i++;
             }
+            taxOnIncome += tempIncome* taxRates[i];
         }
         else
         {

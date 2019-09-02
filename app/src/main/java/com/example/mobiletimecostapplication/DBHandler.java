@@ -16,8 +16,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_goalWeeklyTotal = "goalWeeklyTotal";
     private static final String COLUMN_annualIncome = "annualTotal";
     private static final String COLUMN_ExpensesCost = "expensesCost";
-
-    public static final String TABLE_Goal= "TMCAUser";
+    public static final String TABLE_Goal= "Goal";
     public static final String COLUMN_GoalName = "goalName";
     public static final String COLUMN_GoalCost="GoalCost";
     public static final String COLUMN_GoalID = "goalID";
@@ -27,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private String columnTCMAUserValues[]= {"TCMAUserID","fullName","userName","password","goalWeeklyTotal","annualIncome"};
 
-    private static final String CreateDatabaseSQL = "create table "+ TABLE_TCMAUser +
+    private static final String CreateTCMAUserTable = "create table "+ TABLE_TCMAUser +
             "(" + COLUMN_TCMAUserID+" integer primary key autoincrement, " +
             COLUMN_FullName+" text, " +
             COLUMN_Username+" text not null unique," +
@@ -36,8 +35,8 @@ public class DBHandler extends SQLiteOpenHelper {
             COLUMN_annualIncome + "numeric, " +
             COLUMN_ExpensesCost + "numeric, " +
             "Constraint username_unique UNIQUE (" + COLUMN_Username + ")" +
-            ");" +
-            "create table " + TABLE_Goal + "(" +
+            "); ";
+    private static final String CreateGoalTable = "create table " + TABLE_Goal + "(" +
             COLUMN_GoalID +"integer primary key autoincrement," +
             COLUMN_GoalName+" text, " +
             COLUMN_TCMAUserID+" int not null," +
@@ -49,12 +48,14 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database){
-        database.execSQL(CreateDatabaseSQL);
+        database.execSQL(CreateTCMAUserTable);
+        database.execSQL(CreateGoalTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_TCMAUser);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_Goal);
         onCreate(db);
     }
 

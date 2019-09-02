@@ -17,9 +17,6 @@ class TCMAUser {
     private String password;
     private double weeklyExpenses;
     private double weeklyIncome;
-    private double taxRates[] = {0.33, 0.30, 0.175, 0.105};
-    private int SL_REPAYMENTTHRESHOLD = 19760;
-    private double studentLoanRate = 0.12;
 
     //Region GettersSetters
     public int getTCMAUserID() {
@@ -149,33 +146,33 @@ class TCMAUser {
 
     public double getWeeklyIncomeAfterTax() {
 
-        this.calculateAnnualIncome();
-        double spendableIncome = 0.0;
-        double lowTaxed = 0;
-        double midTaxed = 0;
-        double highTaxed = 0;
+       double taxRates[] = {0.33, 0.30, 0.175, 0.105};
+       double taxIncrements[] = {14001, 34001, 22001};
+       int SL_REPAYMENTTHRESHOLD = 19760;
+       double studentLoanRate = 0.12;
+       double taxOnIncome = 0;
 
-        double incomeTemp = annualIncome;
-        while(incomeTemp > 0)
+       this.calculateAnnualIncome();
+        if (annualIncome > taxIncrements[0])
         {
-            if (incomeTemp >= 14000)
+            double tempIncome = annualIncome;
+            int i = 0;
+            while (tempIncome > 0)
             {
-                spendableIncome = ((incomeTemp * (1 - taxRates[3]))- weeklyExpenses) /52.0;
-                spendableIncome -= 14000;
-            }
-            else if(incomeTemp > 48000)
-            {
-                spendableIncome += ((incomeTemp * (1 - taxRates[2]))- weeklyExpenses) /52.0;
-                spendableIncome -= 36000;
-            }
-            else if(incomeTemp > 70000)
-            {
+                taxOnIncome = annualIncome * taxRates[i];
+                System.out.println(taxOnIncome);
 
+                tempIncome -= taxIncrements[i];
+                i++;
             }
-
         }
-
-        return spendableIncome;
+        else
+        {
+            taxOnIncome = annualIncome * taxRates[3];
+        }
+        return  studentLoanFlag && annualIncome >= SL_REPAYMENTTHRESHOLD?
+                Math.round((annualIncome - taxOnIncome) *( 1 - studentLoanRate) /52 * 100 )/100.0 :
+                Math.round((annualIncome - taxOnIncome) /52 * 100) /100.0;
     }
 }
 

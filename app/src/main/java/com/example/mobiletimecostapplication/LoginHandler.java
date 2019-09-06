@@ -28,7 +28,7 @@ public class LoginHandler extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         db = new DBHandler(this);
 
-        //if (!db.validUser("test"))
+        if (!db.validUser("test"))
             db.addDummyUser();
 
         imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -43,6 +43,7 @@ public class LoginHandler extends AppCompatActivity {
 
                         username = findViewById(R.id.userNameInput);
                         password = findViewById(R.id.passwordInput);
+
                         Log.println(Log.DEBUG, "LoginHandler", "Successful");
 
                         if(db.validUser(username.getText().toString()))

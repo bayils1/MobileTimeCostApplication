@@ -31,16 +31,6 @@ public class RegisterHandler extends AppCompatActivity {
     InputMethodManager imm;
     TCMAUser user;
 
-    private boolean ValidInput(EditText fields[])
-    {
-        for (EditText element : fields) {
-            String temp = element.getText().toString();
-            if (temp.isEmpty())
-                return false;
-        }
-        return true;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +54,9 @@ public class RegisterHandler extends AppCompatActivity {
                         if (!ValidInput(inputs))
                             Toast.makeText(RegisterHandler.this, "Error: Input is missing!", Toast.LENGTH_LONG).show();
                         else {
-                            if (db.validUser(username.getText().toString())) {
+                            if (db.validUser(username.getText().toString()))
                                 Toast.makeText(RegisterHandler.this, "Error: username already exists!", Toast.LENGTH_LONG).show();
-                            } else if (!db.validUser(username.getText().toString())){
+                            else if (!db.validUser(username.getText().toString())){
                                 user = new TCMAUser();
                                 user.setFullName(fullName.getText().toString());
                                 user.setWeeklyExpenses(Double.parseDouble((expensesCost.getText().toString())));
@@ -77,20 +67,28 @@ public class RegisterHandler extends AppCompatActivity {
                                 user.calculateAnnualIncome();
 
                                 if(db.addTCMAUser(user))
-                                {
                                     Toast.makeText(RegisterHandler.this, "Register Successful", Toast.LENGTH_LONG).show();
-                                }
                                 else
-                                {
                                     Toast.makeText(RegisterHandler.this, "Register Unsuccessful", Toast.LENGTH_LONG).show();
-                                }
 
                                 System.out.println(user.getWeeklyIncomeAfterTax() + user.getTCMAUserID() + user.getFullName());
                             }
                         }
 
-                        }
+                    }
                 }
         );
+
+
+    }
+
+    private boolean ValidInput(EditText fields[])
+    {
+        for (EditText element : fields) {
+            String temp = element.getText().toString();
+            if (temp.isEmpty())
+                return false;
+        }
+        return true;
     }
 }

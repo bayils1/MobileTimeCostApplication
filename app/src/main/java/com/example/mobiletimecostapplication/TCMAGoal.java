@@ -10,6 +10,7 @@ public class TCMAGoal {
     private String goalName;
     private int TCMAUserID;
     private double goalCost;
+    private int daysTillCompletion;
     private List<TCMAGoal> userGoalsList;
 
     public int getGoalID() {
@@ -44,6 +45,14 @@ public class TCMAGoal {
         this.goalCost = goalCost;
     }
 
+    public int getDaysTillCompletion() {
+        return daysTillCompletion;
+    }
+
+    public void setDaysTillCompletion(int daysTillCompletion) {
+        this.daysTillCompletion = daysTillCompletion;
+    }
+
     public List<TCMAGoal> getUserGoalHandlerList() {
         return userGoalsList;
     }
@@ -52,11 +61,12 @@ public class TCMAGoal {
         this.userGoalsList = userGoalsList;
     }
 
-    public TCMAGoal(int goalID, String goalName, int TCMAUserID, double goalCost) {
+    public TCMAGoal(int goalID, String goalName, int TCMAUserID, double goalCost, int daysTillCompletion) {
         this.goalID = goalID;
         this.goalName = goalName;
         this.TCMAUserID = TCMAUserID;
         this.goalCost = goalCost;
+        this.daysTillCompletion = daysTillCompletion;
     }
 
     public void setTCMAGoal(String value, String definition) {
@@ -77,6 +87,9 @@ public class TCMAGoal {
                 } catch (Exception doublefail) {
                     Log.d("Failed", "Double could not parse.");
                 }
+                break;
+            case "daysTillCompletion":
+                this.daysTillCompletion = Integer.parseInt(value);
                 break;
         }
     }

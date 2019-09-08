@@ -11,7 +11,6 @@ class TCMAUser {
     private double goalWeeklyTotal;
     private double annualIncome;
     private boolean studentLoanFlag;
-    private List<GoalHandler> userGoalHandlerList;
     private String userName;
     private String password;
     private double weeklyExpenses;
@@ -64,14 +63,6 @@ class TCMAUser {
 
     public void setStudentLoanFlag(boolean studentLoanFlag) {
         this.studentLoanFlag = studentLoanFlag;
-    }
-
-    public List<GoalHandler> getUserGoalHandlerList() {
-        return userGoalHandlerList;
-    }
-
-    public void setUserGoalHandlerList(List<GoalHandler> userGoalHandlerList) {
-        this.userGoalHandlerList = userGoalHandlerList;
     }
 
     public String getUserName() {

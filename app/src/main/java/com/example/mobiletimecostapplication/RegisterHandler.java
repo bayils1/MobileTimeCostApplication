@@ -66,10 +66,14 @@ public class RegisterHandler extends AppCompatActivity {
                                 user.setStudentLoanFlag(studentLoan.isChecked());
                                 user.calculateAnnualIncome();
 
-                                if(db.addTCMAUser(user))
+                                if(db.addTCMAUser(user)) {
                                     Toast.makeText(RegisterHandler.this, "Register Successful", Toast.LENGTH_LONG).show();
-                                else
+                                    Intent intent = new Intent(RegisterHandler.this, GoalHandler.class);
+                                    startActivity(intent);
+                                }
+                                else {
                                     Toast.makeText(RegisterHandler.this, "Register Unsuccessful", Toast.LENGTH_LONG).show();
+                                }
 
                                 System.out.println(user.getWeeklyIncomeAfterTax() + user.getTCMAUserID() + user.getFullName());
                             }

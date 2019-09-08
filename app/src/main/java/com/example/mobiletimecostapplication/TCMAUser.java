@@ -1,6 +1,5 @@
 package com.example.mobiletimecostapplication;
 
-import android.graphics.Region;
 import android.util.Log;
 
 
@@ -12,7 +11,7 @@ class TCMAUser {
     private double goalWeeklyTotal;
     private double annualIncome;
     private boolean studentLoanFlag;
-    private List<Goal> userGoalList;
+    private List<GoalHandler> userGoalHandlerList;
     private String userName;
     private String password;
     private double weeklyExpenses;
@@ -67,12 +66,12 @@ class TCMAUser {
         this.studentLoanFlag = studentLoanFlag;
     }
 
-    public List<Goal> getUserGoalList() {
-        return userGoalList;
+    public List<GoalHandler> getUserGoalHandlerList() {
+        return userGoalHandlerList;
     }
 
-    public void setUserGoalList(List<Goal> userGoalList) {
-        this.userGoalList = userGoalList;
+    public void setUserGoalHandlerList(List<GoalHandler> userGoalHandlerList) {
+        this.userGoalHandlerList = userGoalHandlerList;
     }
 
     public String getUserName() {

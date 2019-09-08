@@ -52,6 +52,9 @@ public class LoginHandler extends AppCompatActivity {
                             user = db.getUserObj(username.getText().toString(), password.getText().toString());
 
                             Toast.makeText(LoginHandler.this, "Hello " + user.getFullName() + "!", Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(LoginHandler.this, GoalHandler.class);
+                            startActivity(intent);
                         }
                         else
                         {

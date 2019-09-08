@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
+import java.util.List;
+
+import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper {
     public static final String TABLE_TCMAUser= "TCMAUser";
@@ -19,13 +22,14 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_ExpensesCost = "expensesCost";
     public static final String TABLE_Goal= "Goal";
     public static final String COLUMN_GoalName = "goalName";
-    public static final String COLUMN_GoalCost="GoalCost";
+    public static final String COLUMN_GoalCost="goalCost";
     public static final String COLUMN_GoalID = "goalID";
 
 
     private static final String DATABASE_NAME = "TCMA";
     private static final int DATABASE_VERSION = 1;
     private String columnTCMAUserValues[]= {"TCMAUserID","fullName","userName","password","goalWeeklyTotal","annualIncome"};
+    private String columnTCMAGoalValues[]= {"goalID","goalName","TCMAUserID","goalCost"};
 
     private static final String CreateTCMAUserTable = "create table "+ TABLE_TCMAUser +
             "(" + COLUMN_TCMAUserID+" integer primary key autoincrement, " +
@@ -140,7 +144,7 @@ public class DBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_goalWeeklyTotal, newUser.getGoalWeeklyTotal());
             values.put(COLUMN_annualIncome, newUser.getAnnualIncome());
             values.put(COLUMN_ExpensesCost, newUser.getWeeklyExpenses());
-            db.insert(TABLE_TCMAUser, null, values);
+            db.insert(TABLE_Goal, null, values);
             db.close();
             return true;
         }
@@ -150,7 +154,45 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
+    public boolean addTABLE_Goal(TCMAGoal newGoal){
+        try{
 
+            SQLiteDatabase db = this.getReadableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_GoalID, newGoal.getGoalID());
+            values.put(COLUMN_GoalName, newGoal.getGoalName());
+            values.put(COLUMN_TCMAUserID, newGoal.getTCMAUserID());
+            values.put(COLUMN_GoalCost, newGoal.getGoalCost());
+            db.insert(TABLE_TCMAUser, null, values);
+            db.close();
+            return true;
+
+        }catch(Exception goalAddingFailed)
+        {
+            return false;
+        }
+    }
+
+    public List<TCMAGoal> getGoals(int userID){
+        List<TCMAGoal> tempGoals = new ArrayList<TCMAGoal>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from " + TABLE_Goal +
+                " where " + COLUMN_TCMAUserID + "='" + userID + "'";
+
+        //null is all columns
+        Cursor c = db.rawQuery(query, null);
+
+        while(c.moveToNext()) {
+            for(int i = 0; i < columnTCMAGoalValues.length; i++)
+            {
+                if(c.getString(i) != null)
+                    tempGoals.(c.getString(i), columnTCMAGoalValues[i]);
+            }
+        }
+        db.close();
+        return tempGoals;
+    }
 
 
 }

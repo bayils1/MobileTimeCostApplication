@@ -12,7 +12,6 @@
         <activity android:name=".LoginHandler">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -20,6 +19,14 @@
             android:name=".RegisterHandler"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".LoginHandler"></activity>
+        <activity
+            android:name=".GoalHandler"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".GoalHandler"></activity>
+        <activity
+            android:name=".TimeCostCalcHandler"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".TimeCostCalcHandler"></activity>
     </application>
 
 </manifest>

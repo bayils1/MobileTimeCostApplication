@@ -89,6 +89,19 @@ class TCMAUser {
         this.weeklyIncome = weeklyIncome;
     }
 
+    public TCMAUser(int TCMAUserID, String fullName, String userName, String password, double goalWeeklyTotal, double weeklyExpenses, double weeklyIncome) {
+        this.TCMAUserID = TCMAUserID;
+        this.fullName = fullName;
+        this.userName = userName;
+        this.password = password;
+        this.goalWeeklyTotal = goalWeeklyTotal;
+        this.weeklyExpenses = weeklyExpenses;
+        this.weeklyIncome = weeklyIncome;
+    }
+
+    public TCMAUser() {
+    }
+
     //EndRegion
 
     public void setTCMAUser(String value, String definition) {

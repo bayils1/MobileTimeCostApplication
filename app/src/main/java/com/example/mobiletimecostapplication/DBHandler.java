@@ -178,10 +178,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public List<TCMAGoal> getGoals(int userID){
         List<TCMAGoal> tempGoals = new ArrayList<TCMAGoal>();
+        tempGoals = null;
 
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "select * from " + TABLE_Goal +
-                " where " + COLUMN_TCMAUserID + "='" + userID + "'";
+                " where " + COLUMN_TCMAUserID + "=" + userID;
 
         //null is all columns
         Cursor c = db.rawQuery(query, null);
@@ -208,5 +209,40 @@ public class DBHandler extends SQLiteOpenHelper {
         return tempGoals;
     }
 
+    public TCMAUser getUserInfo(String username){
+        TCMAUser tempUser = new TCMAUser();
+        tempUser = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from " + TABLE_TCMAUser +
+                " where " + COLUMN_Username + "='" + username + "'";
+
+        //null is all columns
+        Cursor c = db.rawQuery(query, null);
+
+        if(c != null && c.moveToFirst()){
+
+            int TCMAUserID = c.getColumnIndex(COLUMN_TCMAUserID);
+            int fullName = c.getColumnIndex(COLUMN_FullName);
+            int userName = c.getColumnIndex(COLUMN_Username);
+            int password = c.getColumnIndex(COLUMN_Password);
+            int goalWeeklyTotal = c.getColumnIndex(COLUMN_goalWeeklyTotal);
+            int goalWeeklyIncome = c.getColumnIndex(COLUMN_annualIncome);
+            int expensesCost = c.getColumnIndex(COLUMN_ExpensesCost);
+
+            while(c.moveToNext()) {
+                for(int i = 0; i < columnTCMAUserValues.length; i++)
+                {
+                    if(c.getString(i) != null)
+                        tempUser = new TCMAUser(c.getInt(TCMAUserID), c.getString(fullName),
+                                c.getString(userName), c.getString(password), c.getDouble(goalWeeklyTotal),
+                                c.getDouble(goalWeeklyIncome), c.getDouble(expensesCost));
+                }
+            }
+
+        }
+        db.close();
+        return tempUser;
+    }
 
 }

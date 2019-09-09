@@ -68,10 +68,10 @@ public class RegisterHandler extends AppCompatActivity {
 
                                 if(db.addTCMAUser(user)) {
                                     Toast.makeText(RegisterHandler.this, "Register Successful", Toast.LENGTH_LONG).show();
-                                    String intentParm = username.getText().toString();
+                                    String intentP = username.getText().toString();
                                     Intent intent = new Intent(RegisterHandler.this, GoalHandler.class);
                                     Bundle b = new Bundle();
-                                    b.putString("username", intentParm);
+                                    b.putString("username", intentP);
                                     startActivity(intent);
                                 }
                                 else {

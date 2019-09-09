@@ -53,9 +53,7 @@ public class LoginHandler extends AppCompatActivity {
 
                             Toast.makeText(LoginHandler.this, "Hello " + user.getFullName() + "!", Toast.LENGTH_LONG).show();
 
-                            String intentP = username.getText().toString();
                             Intent intent = new Intent(LoginHandler.this, GoalHandler.class);
-                            intent.putExtra("username", intentP);
                             startActivity(intent);
                         }
                         else

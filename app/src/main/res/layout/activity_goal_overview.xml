@@ -32,7 +32,6 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:background="@drawable/input_text_design"
-        android:focusable="false"
         android:fontFamily="Arial"
         android:shadowRadius="@android:integer/config_shortAnimTime"
         android:textSize="9pt"

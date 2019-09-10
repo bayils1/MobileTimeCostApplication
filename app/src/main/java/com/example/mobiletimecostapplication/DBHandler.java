@@ -32,6 +32,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private String columnTCMAUserValues[]= {"TCMAUserID","fullName","userName","password","goalWeeklyTotal","annualIncome"};
     private String columnTCMAGoalValues[]= {"goalID","goalName","TCMAUserID","goalCost","daysTillCompletion"};
 
+
     private static final String CreateTCMAUserTable = "create table "+ TABLE_TCMAUser +
             "(" + COLUMN_TCMAUserID+" integer primary key autoincrement, " +
             COLUMN_FullName+" text, " +
@@ -47,7 +48,9 @@ public class DBHandler extends SQLiteOpenHelper {
             COLUMN_GoalName+" text, " +
             COLUMN_TCMAUserID+" int not null," +
             COLUMN_GoalCost+" numeric not null," +
-            COLUMN_DaysTillCompletion+" integer not null);";
+            COLUMN_DaysTillCompletion+" integer not null," +
+            "Constraint goalID_unique UNIQUE (" + COLUMN_GoalID + ")" +
+            ");";
 
     public DBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -143,7 +146,7 @@ public class DBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_FullName, newUser.getFullName());
             values.put(COLUMN_Username, newUser.getUserName());
             values.put(COLUMN_Password, newUser.getPassword());
-            values.put(COLUMN_goalWeeklyTotal, newUser.getGoalWeeklyTotal());
+            values.put(COLUMN_goalWeeklyTotal, newUser.getWeeklyIncome());
             values.put(COLUMN_annualIncome, newUser.getAnnualIncome());
             values.put(COLUMN_ExpensesCost, newUser.getWeeklyExpenses());
             db.insert(TABLE_TCMAUser, null, values);
@@ -161,7 +164,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
             SQLiteDatabase db = this.getReadableDatabase();
             ContentValues values = new ContentValues();
-            values.put(COLUMN_GoalID, newGoal.getGoalID());
             values.put(COLUMN_GoalName, newGoal.getGoalName());
             values.put(COLUMN_TCMAUserID, newGoal.getTCMAUserID());
             values.put(COLUMN_GoalCost, newGoal.getGoalCost());
@@ -178,7 +180,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public List<TCMAGoal> getGoals(int userID){
         List<TCMAGoal> tempGoals = new ArrayList<TCMAGoal>();
-        tempGoals = null;
 
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "select * from " + TABLE_Goal +
@@ -186,8 +187,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
         //null is all columns
         Cursor c = db.rawQuery(query, null);
-
-        if(c != null && c.moveToFirst()){
 
             int goalID = c.getColumnIndex(COLUMN_GoalID);
             int goalName = c.getColumnIndex(COLUMN_GoalName);
@@ -204,14 +203,12 @@ public class DBHandler extends SQLiteOpenHelper {
                 }
             }
 
-        }
         db.close();
         return tempGoals;
     }
 
     public TCMAUser getUserInfo(String username){
         TCMAUser tempUser = new TCMAUser();
-        tempUser = null;
 
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "select * from " + TABLE_TCMAUser +
@@ -219,8 +216,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
         //null is all columns
         Cursor c = db.rawQuery(query, null);
-
-        if(c != null && c.moveToFirst()){
 
             int TCMAUserID = c.getColumnIndex(COLUMN_TCMAUserID);
             int fullName = c.getColumnIndex(COLUMN_FullName);
@@ -234,13 +229,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 for(int i = 0; i < columnTCMAUserValues.length; i++)
                 {
                     if(c.getString(i) != null)
+                        Log.println(Log.DEBUG, "c value:", c.getString(i) + "");
                         tempUser = new TCMAUser(c.getInt(TCMAUserID), c.getString(fullName),
                                 c.getString(userName), c.getString(password), c.getDouble(goalWeeklyTotal),
-                                c.getDouble(goalWeeklyIncome), c.getDouble(expensesCost));
+                                c.getDouble(expensesCost));
+
+                            //tempUser.setTCMAUser(c.getString(i), columnTCMAUserValues[i]);
                 }
             }
-
-        }
         db.close();
         return tempUser;
     }

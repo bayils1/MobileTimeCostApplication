@@ -89,14 +89,13 @@ class TCMAUser {
         this.weeklyIncome = weeklyIncome;
     }
 
-    public TCMAUser(int TCMAUserID, String fullName, String userName, String password, double goalWeeklyTotal, double weeklyExpenses, double weeklyIncome) {
+    public TCMAUser(int TCMAUserID, String fullName, String userName, String password, double goalWeeklyTotal, double weeklyExpenses) {
         this.TCMAUserID = TCMAUserID;
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
         this.goalWeeklyTotal = goalWeeklyTotal;
         this.weeklyExpenses = weeklyExpenses;
-        this.weeklyIncome = weeklyIncome;
     }
 
     public TCMAUser() {
@@ -113,9 +112,9 @@ class TCMAUser {
             case "fullName":
                 this.fullName = value;
                 break;
-            case "goalWeeklyTotal":
+            case "weeklyIncome":
                 try {
-                    this.goalWeeklyTotal = Double.parseDouble(value);
+                    this.weeklyIncome = Double.parseDouble(value);
                 } catch (Exception doublefail) {
                     Log.d("Failed", "Double could not parse.");
                 }
@@ -133,9 +132,9 @@ class TCMAUser {
             case "password":
                 this.password = value;
                 break;
-            case "weeklyIncome":
+            case "weeklyExpenses":
                 try {
-                    this.weeklyIncome= Double.parseDouble(value);
+                    this.weeklyExpenses= Double.parseDouble(value);
                 } catch (Exception doublefail) {
                     Log.d("Failed", "Double could not parse.");
                 }

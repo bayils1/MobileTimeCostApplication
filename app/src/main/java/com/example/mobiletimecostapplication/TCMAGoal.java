@@ -61,6 +61,9 @@ public class TCMAGoal {
         this.userGoalsList = userGoalsList;
     }
 
+    public TCMAGoal() {
+    }
+
     public TCMAGoal(int goalID, String goalName, int TCMAUserID, double goalCost, int daysTillCompletion) {
         this.goalID = goalID;
         this.goalName = goalName;

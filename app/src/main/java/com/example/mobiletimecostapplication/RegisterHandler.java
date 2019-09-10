@@ -70,8 +70,7 @@ public class RegisterHandler extends AppCompatActivity {
                                     Toast.makeText(RegisterHandler.this, "Register Successful", Toast.LENGTH_LONG).show();
                                     String intentP = username.getText().toString();
                                     Intent intent = new Intent(RegisterHandler.this, GoalHandler.class);
-                                    Bundle b = new Bundle();
-                                    b.putString("username", intentP);
+                                    intent.putExtra("username", intentP);
                                     startActivity(intent);
                                 }
                                 else {

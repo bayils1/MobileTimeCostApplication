@@ -73,6 +73,36 @@
         app:layout_constraintTop_toBottomOf="@+id/mottoText" />
 
     <TextView
+        android:id="@+id/daysTillCompletionOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="Arial"
+        android:text=""
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:layout_constraintStart_toEndOf="@+id/daysTillCompletionLabel"
+        app:layout_constraintTop_toBottomOf="@+id/weeklyExpensesInput" />
+
+    <TextView
+        android:id="@+id/daysTillCompletionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="18dp"
+        android:fontFamily="Arial"
+        android:text="Days to Complete:"
+        android:textColor="@color/fontColor"
+        android:textSize="9.5pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyExpensesLabel"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/goalNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,8 +155,8 @@
         android:id="@+id/goalPriceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="Arial"
         android:text="Goal Price:"
@@ -146,6 +176,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
+
 
     <TextView
         android:id="@+id/welcomeLabel"
@@ -174,18 +205,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <Button
-        android:id="@+id/calculate"
+        android:id="@+id/saveGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
         android:background="@color/barColor"
         android:filterTouchesWhenObscured="false"
         android:fontFamily="Arial"
         android:stateListAnimator="@null"
-        android:text="Calculate"
+        android:text="Save Goal"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="10pt"
@@ -194,7 +222,7 @@
         app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toEndOf="@+id/mainPig"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.681" />
+        app:layout_constraintVertical_bias="0.459" />
 
     <ImageView
         android:id="@+id/mainPig"
@@ -220,5 +248,24 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeLabel" />
+
+    <Button
+        android:id="@+id/calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@color/barColor"
+        android:filterTouchesWhenObscured="false"
+        android:fontFamily="Arial"
+        android:stateListAnimator="@null"
+        android:text="Calculate"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/daysTillCompletionLabel"
+        app:layout_constraintVertical_bias="0.034" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

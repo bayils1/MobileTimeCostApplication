@@ -27,8 +27,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_DaysTillCompletion = "daysTillCompletion";
 
 
-    private static final String DATABASE_NAME = "TCMA";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "TCMA";
+    public static final int DATABASE_VERSION = 1;
     private String columnTCMAUserValues[]= {"TCMAUserID","fullName","userName","password","goalWeeklyTotal","annualIncome"};
     private String columnTCMAGoalValues[]= {"goalID","goalName","TCMAUserID","goalCost","daysTillCompletion"};
 

@@ -8,11 +8,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.List;
 
 public class TimeCostCalcHandler extends AppCompatActivity {
 
@@ -25,8 +22,8 @@ public class TimeCostCalcHandler extends AppCompatActivity {
     EditText weeklyIncomeInput;
     EditText weeklyExpensesInput;
     TextView daysTillCompletionOut;
-    String username;
-    Double daysTillCompletion=0.0;
+    String username="";
+    int daysTillCompletion=0;
     DBHandler db;
     InputMethodManager imm;
     TCMAGoal goal;
@@ -49,8 +46,10 @@ public class TimeCostCalcHandler extends AppCompatActivity {
         EditText inputs[] = new EditText[]{goalNameInput, goalPriceInput, weeklyIncomeInput, weeklyExpensesInput};
 
         Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-        Log.println(Log.DEBUG, "username:", username + "");
+        if(intent != null) {
+            username = intent.getStringExtra("username");
+            Log.println(Log.DEBUG, "username:", username + "");
+        }
 
         user = db.getUserInfo(username);
         Log.println(Log.DEBUG, "User.GetFullName: ", user.getFullName() + "");
@@ -66,13 +65,12 @@ public class TimeCostCalcHandler extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        daysTillCompletion = Double.parseDouble(weeklyIncomeInput.getText().toString())
-                                - Double.parseDouble(weeklyExpensesInput.getText().toString());
-                        daysTillCompletion = (Double.parseDouble(goalPriceInput.getText().toString())
-                                / daysTillCompletion) * 7;
-                        daysList = (new Double(daysTillCompletion).toString()).split("\\.");
+                        daysTillCompletion = computeDaysTillComplete(Double.parseDouble(goalPriceInput.getText().toString()),
+                                Double.parseDouble(weeklyIncomeInput.getText().toString()),
+                                Double.parseDouble(weeklyExpensesInput.getText().toString()));
+
                         daysTillCompletionOut.setText(daysList[0].toString());
-                        Log.println(Log.DEBUG, "daysTillCompletionOut:", daysList[0].toString() + "");
+                        //Log.println(Log.DEBUG, "daysTillCompletionOut:", daysList[0].toString() + "");
                     }
                 }
         );
@@ -98,6 +96,20 @@ public class TimeCostCalcHandler extends AppCompatActivity {
                     }
                 }
         );
+
+    }
+
+    public int computeDaysTillComplete(Double goalPrice, Double weeklyIncome, Double weeklyExpenses){
+
+        daysTillCompletion = 0;
+        Double compDays = 0.0;
+        daysList = null;
+
+        compDays = (goalPrice / (weeklyIncome - weeklyExpenses)) * 7;
+
+        daysList = (new Double(compDays).toString()).split("\\.");
+
+        return daysTillCompletion;
 
     }
 }

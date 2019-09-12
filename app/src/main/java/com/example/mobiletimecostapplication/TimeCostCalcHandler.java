@@ -29,6 +29,7 @@ public class TimeCostCalcHandler extends AppCompatActivity {
     TCMAGoal goal;
     TCMAUser user;
     String[] daysList;
+    CalculateTimeCost calcTimeCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +66,12 @@ public class TimeCostCalcHandler extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        daysTillCompletion = computeDaysTillComplete(Double.parseDouble(goalPriceInput.getText().toString()),
+                        calcTimeCost = new CalculateTimeCost(Double.parseDouble(goalPriceInput.getText().toString()),
                                 Double.parseDouble(weeklyIncomeInput.getText().toString()),
                                 Double.parseDouble(weeklyExpensesInput.getText().toString()));
+                        daysTillCompletion = calcTimeCost.computeDaysTillComplete();
 
-                        daysTillCompletionOut.setText(daysList[0].toString());
+                        daysTillCompletionOut.setText(new Integer (daysTillCompletion).toString());
                         //Log.println(Log.DEBUG, "daysTillCompletionOut:", daysList[0].toString() + "");
                     }
                 }
@@ -99,7 +101,7 @@ public class TimeCostCalcHandler extends AppCompatActivity {
 
     }
 
-    public int computeDaysTillComplete(Double goalPrice, Double weeklyIncome, Double weeklyExpenses){
+    /*public int computeDaysTillComplete(Double goalPrice, Double weeklyIncome, Double weeklyExpenses){
 
         daysTillCompletion = 0;
         Double compDays = 0.0;
@@ -108,8 +110,9 @@ public class TimeCostCalcHandler extends AppCompatActivity {
         compDays = (goalPrice / (weeklyIncome - weeklyExpenses)) * 7;
 
         daysList = (new Double(compDays).toString()).split("\\.");
+        daysTillCompletion = Integer.parseInt(daysList[0]);
 
         return daysTillCompletion;
 
-    }
+    }*/
 }
